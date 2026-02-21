@@ -25,7 +25,7 @@ func main() {
 
 	// Initialize tracing
 	env := appconfig.GetEnvVars()
-	shutdown, err := config.InitTracing(env.ServiceName, env.JaegerEndpoint)
+	shutdown, err := config.InitTracing(env.ServiceName, env.TracerEndpoint)
 	if err != nil {
 		log.Fatalf("Failed to initialize tracing: %v", err)
 	}

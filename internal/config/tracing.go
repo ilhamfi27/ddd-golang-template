@@ -10,12 +10,12 @@ import (
 	"go.opentelemetry.io/otel/sdk/trace"
 )
 
-// InitTracing initializes the OpenTelemetry tracer with Jaeger exporter
-func InitTracing(serviceName, jaegerEndpoint string) (func(context.Context) error, error) {
-	// Create OTLP exporter that sends to Jaeger
+// InitTracing initializes the OpenTelemetry tracer with OTLP exporter
+func InitTracing(serviceName, tracerEndpoint string) (func(context.Context) error, error) {
+	// Create OTLP exporter that sends to the APM backend
 	// WithEndpoint expects host:port (no scheme), WithInsecure() enables plain HTTP
 	exporter, err := otlptracehttp.New(context.Background(),
-		otlptracehttp.WithEndpoint(jaegerEndpoint),
+		otlptracehttp.WithEndpoint(tracerEndpoint),
 		otlptracehttp.WithInsecure(),
 	)
 	if err != nil {

@@ -429,8 +429,8 @@ Set these in `.env`:
 # JWT Secret (change in production!)
 JWT_SECRET=your-super-secret-key
 
-# Jaeger endpoint
-JAEGER_ENDPOINT=http://localhost:4318
+# Tracer endpoint (host:port only, no scheme)
+TRACER_ENDPOINT=localhost:4318
 
 # Log level (optional)
 APP_ENV=development
@@ -440,7 +440,7 @@ APP_ENV=development
 
 ### Traces not appearing in Jaeger?
 1. Ensure Jaeger is running: `docker-compose up -d jaeger`
-2. Check endpoint: `JAEGER_ENDPOINT=http://localhost:4318`
+2. Check endpoint: `TRACER_ENDPOINT=localhost:4318` (no `http://` prefix)
 3. Verify connectivity: `curl http://localhost:16686`
 
 ### JWT not validating?

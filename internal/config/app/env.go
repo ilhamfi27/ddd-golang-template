@@ -18,7 +18,7 @@ type EnvVars struct {
 	Port           string
 	MigrationDir   string
 	JWTSecret      string
-	JaegerEndpoint string
+	TracerEndpoint string
 	AppEnv         string
 }
 
@@ -57,9 +57,9 @@ func GetEnvVars() *EnvVars {
 		jwtSecret = "your-secret-key-change-in-production"
 	}
 
-	jaegerEndpoint := os.Getenv("JAEGER_ENDPOINT")
-	if jaegerEndpoint == "" {
-		jaegerEndpoint = "localhost:4318"
+	tracerEndpoint := os.Getenv("TRACER_ENDPOINT")
+	if tracerEndpoint == "" {
+		tracerEndpoint = "localhost:4318"
 	}
 
 	appEnv := os.Getenv("APP_ENV")
@@ -83,7 +83,7 @@ func GetEnvVars() *EnvVars {
 		Port:           ":" + port,
 		MigrationDir:   migrationDir,
 		JWTSecret:      jwtSecret,
-		JaegerEndpoint: jaegerEndpoint,
+		TracerEndpoint: tracerEndpoint,
 		AppEnv:         appEnv,
 	}
 }
