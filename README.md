@@ -15,6 +15,10 @@ A production-ready Golang template implementing Domain-Driven Design (DDD) princ
 - **Error Handling**: Centralized error handling mechanism
 - **Environment Configuration**: Easy configuration via environment variables
 - **Automated Versioning**: Semantic-release for automated version management and changelog generation
+- **Authentication**: JWT-based authentication middleware
+- **Structured Logging**: JSON-formatted request/response logging
+- **Input Validation**: Declarative DTO validation with go-playground/validator
+- **Distributed Tracing**: OpenTelemetry + Jaeger for request flow visualization
 
 ## 📁 Project Structure
 
@@ -474,6 +478,8 @@ This project is licensed under the Apache License 2.0 - see the LICENSE file for
 ## 📚 Additional Resources
 
 - [Architecture Documentation](docs/ARCHITECTURE.md) - Detailed DDD and Hexagonal Architecture guide
+- [Middleware Documentation](docs/MIDDLEWARE.md) - Authentication, Logging, Validation, and Tracing middleware
+- [Distributed Tracing Guide](docs/TRACING.md) - OpenTelemetry and Jaeger integration
 - [Semantic Release Guide](docs/SEMANTIC_RELEASE.md) - Versioning and release workflow
 - [Domain-Driven Design](https://martinfowler.com/tags/domain%20driven%20design.html)
 - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
@@ -485,16 +491,18 @@ This project is licensed under the Apache License 2.0 - see the LICENSE file for
 
 ## 🗺️ Roadmap
 
+- [x] Add authentication middleware
+- [x] Add request validation middleware
+- [x] Add logging middleware
+- [x] Add distributed tracing (OpenTelemetry + Jaeger)
 - [ ] Add unit tests
 - [ ] Add integration tests
 - [ ] Add Docker support for the application
 - [ ] Add CI/CD pipeline examples
-- [ ] Add authentication middleware
-- [ ] Add request validation middleware
-- [ ] Add logging middleware
 - [ ] Add rate limiting
 - [ ] Add caching layer
 - [ ] Add GraphQL support
+- [ ] Add API versioning strategy
 
 ---
 

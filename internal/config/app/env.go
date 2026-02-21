@@ -8,14 +8,18 @@ import (
 )
 
 type EnvVars struct {
-	DBDriver     string
-	DBHost       string
-	DBPort       string
-	DBUser       string
-	DBPass       string
-	DBName       string
-	Port         string
-	MigrationDir string
+	ServiceName    string
+	DBDriver       string
+	DBHost         string
+	DBPort         string
+	DBUser         string
+	DBPass         string
+	DBName         string
+	Port           string
+	MigrationDir   string
+	JWTSecret      string
+	JaegerEndpoint string
+	AppEnv         string
 }
 
 func LoadEnv() error {
@@ -47,14 +51,39 @@ func GetEnvVars() *EnvVars {
 	if port == "" {
 		port = "1321"
 	}
+
+	jwtSecret := os.Getenv("JWT_SECRET")
+	if jwtSecret == "" {
+		jwtSecret = "your-secret-key-change-in-production"
+	}
+
+	jaegerEndpoint := os.Getenv("JAEGER_ENDPOINT")
+	if jaegerEndpoint == "" {
+		jaegerEndpoint = "localhost:4318"
+	}
+
+	appEnv := os.Getenv("APP_ENV")
+	if appEnv == "" {
+		appEnv = "development"
+	}
+
+	serviceName := os.Getenv("SERVICE_NAME")
+	if serviceName == "" {
+		serviceName = "ddd-golang-template"
+	}
+
 	return &EnvVars{
-		DBDriver:     dBDriver,
-		DBHost:       dBHost,
-		DBPort:       dBPort,
-		DBUser:       dBUser,
-		DBPass:       dBPass,
-		DBName:       dBName,
-		Port:         ":" + port,
-		MigrationDir: migrationDir,
+		ServiceName:    serviceName,
+		DBDriver:       dBDriver,
+		DBHost:         dBHost,
+		DBPort:         dBPort,
+		DBUser:         dBUser,
+		DBPass:         dBPass,
+		DBName:         dBName,
+		Port:           ":" + port,
+		MigrationDir:   migrationDir,
+		JWTSecret:      jwtSecret,
+		JaegerEndpoint: jaegerEndpoint,
+		AppEnv:         appEnv,
 	}
 }
