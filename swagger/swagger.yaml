@@ -1,0 +1,96 @@
+definitions:
+  dto.ParseExampleDto:
+    properties:
+      name:
+        example: john doe
+        type: string
+    type: object
+info:
+  contact:
+    email: support@nashul.com
+    name: Ilham
+    url: https://nashul.com
+  description: This is a simple API Example.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Example
+  version: 1.0.0
+paths:
+  /:
+    get:
+      consumes:
+      - '*/*'
+      description: get the root path.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Show the root path.
+      tags:
+      - Root
+  /example:
+    get:
+      consumes:
+      - application/json
+      description: Get data using GET method.
+      parameters:
+      - description: Example
+        in: query
+        name: example
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get data
+      tags:
+      - Example
+    post:
+      consumes:
+      - application/json
+      description: Get data using POST method.
+      parameters:
+      - description: Parse Example Body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ParseExampleDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get data
+      tags:
+      - Example
+  /healthcheck:
+    get:
+      consumes:
+      - '*/*'
+      description: get the status of server.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Show the status of server.
+      tags:
+      - Root
+swagger: "2.0"
