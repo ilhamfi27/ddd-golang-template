@@ -31,7 +31,7 @@ func (c *ExampleController) ExampleGetMtd(h echo.Context) error {
 	name := h.QueryParam("name")
 	var data dto.ParseExampleDto
 	data.Name = strings.TrimSpace(name)
-	result, err := c.ExampleService.Hello(data)
+	result, err := c.ExampleService.Hello(h.Request().Context(), data)
 	return utils.Respond(h, result, err)
 }
 
@@ -49,6 +49,6 @@ func (c *ExampleController) ExamplePostMtd(h echo.Context) error {
 	if err != nil {
 		return utils.Respond(h, nil, err)
 	}
-	result, err := c.ExampleService.Hello(data)
+	result, err := c.ExampleService.Hello(h.Request().Context(), data)
 	return utils.Respond(h, result, err)
 }

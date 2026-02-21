@@ -1,6 +1,8 @@
 package domains
 
 import (
+	"context"
+
 	"github.com/ilhamfi27/ddd-golang-template/internal/application/dto"
 	"github.com/ilhamfi27/ddd-golang-template/internal/infrastructure/repositories"
 )
@@ -15,9 +17,10 @@ func NewExampleService(repo *repositories.GormExampleRepository) *ExampleService
 	}
 }
 
-func (s *ExampleService) Hello(data dto.ParseExampleDto) (map[string]interface{}, error) {
-
+func (s *ExampleService) Hello(ctx context.Context, data dto.ParseExampleDto) (map[string]interface{}, error) {
+	examples := s.repo.GetExamples(ctx)
 	return map[string]interface{}{
-		"name": data.Name,
+		"name":     data.Name,
+		"examples": examples,
 	}, nil
 }

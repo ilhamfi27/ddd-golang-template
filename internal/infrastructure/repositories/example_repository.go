@@ -1,6 +1,8 @@
 package repositories
 
 import (
+	"context"
+
 	model "github.com/ilhamfi27/ddd-golang-template/internal/models"
 	"gorm.io/gorm"
 )
@@ -15,24 +17,24 @@ func NewGormExampleRepository(db *gorm.DB) *GormExampleRepository {
 	}
 }
 
-func (r *GormExampleRepository) GetExamples() []model.ExampleModel {
+func (r *GormExampleRepository) GetExamples(ctx context.Context) []model.ExampleModel {
 	var examples []model.ExampleModel
-	r.db.Find(&examples)
+	r.db.WithContext(ctx).Find(&examples)
 	return examples
 }
-func (r *GormExampleRepository) GetExampleByID(id uint) model.ExampleModel {
+func (r *GormExampleRepository) GetExampleByID(ctx context.Context, id uint) model.ExampleModel {
 	var example model.ExampleModel
-	r.db.First(&example, id)
+	r.db.WithContext(ctx).First(&example, id)
 	return example
 }
-func (r *GormExampleRepository) UpdateExample(id uint, example model.ExampleModel) error {
-	return r.db.Model(&model.ExampleModel{}).Where("id = ?", id).Updates(example).Error
+func (r *GormExampleRepository) UpdateExample(ctx context.Context, id uint, example model.ExampleModel) error {
+	return r.db.WithContext(ctx).Model(&model.ExampleModel{}).Where("id = ?", id).Updates(example).Error
 }
 
-func (r *GormExampleRepository) CreateExample(example model.ExampleModel) error {
-	return r.db.Create(&example).Error
+func (r *GormExampleRepository) CreateExample(ctx context.Context, example model.ExampleModel) error {
+	return r.db.WithContext(ctx).Create(&example).Error
 }
 
-func (r *GormExampleRepository) DeleteExample(id uint) error {
-	return r.db.Delete(&model.ExampleModel{}, id).Error
+func (r *GormExampleRepository) DeleteExample(ctx context.Context, id uint) error {
+	return r.db.WithContext(ctx).Delete(&model.ExampleModel{}, id).Error
 }
